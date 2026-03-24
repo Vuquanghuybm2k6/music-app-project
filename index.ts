@@ -7,6 +7,9 @@ const port = process.env.PORT || 3000
 import * as database from './config/database'
 database.connect()
 
+app.set('view engine', 'pug')
+app.set('views', './views')
+
 import { clientRoutes } from './routes/client/index.route'
 clientRoutes(app)
 

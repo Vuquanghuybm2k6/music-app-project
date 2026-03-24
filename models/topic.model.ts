@@ -11,7 +11,7 @@ const topicSchema = new Schema({
     type: Boolean,
     default: false
   },
-  deletedAt: Date(),
+  deletedAt: Date,
 },{
   timestamps: true
 })
