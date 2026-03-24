@@ -9,7 +9,7 @@ database.connect()
 
 app.set('view engine', 'pug')
 app.set('views', './views')
-
+app.use(express.static('public'))
 import { clientRoutes } from './routes/client/index.route'
 clientRoutes(app)
 
