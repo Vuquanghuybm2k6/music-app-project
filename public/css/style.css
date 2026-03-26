@@ -268,3 +268,6 @@ body {
   border: none;
   cursor: pointer;
 }
+.inner-heart.active i {
+  color: red;
+}
