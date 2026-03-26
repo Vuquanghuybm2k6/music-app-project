@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 include ../../mixins/box-head.pug
 
 block main
-  .singner-detail
+  .singer-detail
     .container.my-3
       .row
         .col-12
@@ -25,7 +25,7 @@ block main
               i(class="fa-regular fa-thumbs-up")
               span #{song.like} thích
 
-            div(class="inner-action inner-heart")
+            button(class=("inner-action inner-heart" + (song.isFavorite ? " active" : "")) button-favorite = song._id)
               i(class="fa-regular fa-heart")
               | Bài hát yêu thích
 
