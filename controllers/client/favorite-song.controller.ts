@@ -16,7 +16,7 @@ export const index = async (req: Request, res: Response) => {
       const infoSong = await Song.findById(item.songId).lean()
 
       if (!infoSong) {
-        console.log("❌ Không tìm thấy song:", item.songId)
+        console.log("Không tìm thấy song:", item.songId)
         continue
       }
 
