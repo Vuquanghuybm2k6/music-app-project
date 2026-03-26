@@ -1,3 +1,4 @@
+// APlayer
 const aplayer = document.querySelector("#aplayer")
 if(aplayer){
   let dataSong = aplayer.getAttribute("data-song")
@@ -20,3 +21,27 @@ if(aplayer){
     volume: 1
 });
 }
+// End APlayer
+
+// Button Like
+const buttonLike = document.querySelector("[button-like]")
+if(buttonLike){
+  buttonLike.addEventListener("click", ()=>{
+    const idSong = buttonLike.getAttribute("button-like")
+    const isActive = buttonLike.classList.contains("active")
+    const typeLike = isActive ? "dislike" : "like"
+    const link = `/songs/like/${typeLike}/${idSong}`
+    const option ={
+      method: "PATCH"
+    }
+    fetch(link, option)
+      .then(res => res.json())
+      .then(data=>{
+        const span = buttonLike.querySelector("span")
+        span.innerHTML = `${data.like} thích` // Update like number
+        buttonLike.classList.toggle("active") // Toggle active class  
+      })
+      .catch(error => console.error("Like error:", error))
+  } )
+}
+// End Button Like

@@ -21,9 +21,9 @@ block main
               i(class="fa-solid fa-music")
               | #{topic.title}
 
-            div(class="inner-action inner-like")
+            button(button-like = song._id class="inner-action inner-like")
               i(class="fa-regular fa-thumbs-up")
-              | #{song.like} thích
+              span #{song.like} thích
 
             div(class="inner-action inner-heart")
               i(class="fa-regular fa-heart")
