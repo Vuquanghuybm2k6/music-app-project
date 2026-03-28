@@ -1,9 +1,14 @@
 import mongoose from 'mongoose';
-
+const slug = require('mongoose-slug-updater')
+mongoose.plugin(slug)
 const songSchema = new mongoose.Schema({
   title: String, 
   avatar: String,
-  slug: String,
+  slug: {
+    type: String,
+    slug: "title",
+    unique: true
+  },
   topicId: String,
   singerId: String,
   like: {
