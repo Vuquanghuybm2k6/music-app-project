@@ -10,7 +10,7 @@ import { adminRoutes } from './routes/admin/index.route'
 dotenv.config()
 const port = process.env.PORT || 3000
 database.connect()
-
+app.locals.prefixAdmin = systemConfig.prefixAdmin
 app.set('view engine', 'pug')
 app.set('views', './views')
 app.use(express.static('public'))
