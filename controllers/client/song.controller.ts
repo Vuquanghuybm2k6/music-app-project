@@ -41,7 +41,7 @@ export const detail = async (req:Request, res: Response)=>{
     slug: slugSong, 
     deleted: false,
     status: "active"  
-  }).select("avatar title slug singerId topicId like")
+  }).select("avatar title slug singerId topicId like audio description lyrics listen")
   if(!song){
     return res.status(404).send("Song not found")
   }
@@ -114,6 +114,27 @@ export const favorite = async (req:Request, res: Response)=>{
   res.json({
     code: 200,
     message: "Cập nhật yêu thích thành công"
+  })
+
+}
+
+// [PATCH]: /songs/listen/:idSong
+export const listen = async (req:Request, res: Response)=>{
+  const idSong: string = req.params.idSong as string  
+  const song = await Song.findOne({
+    _id: idSong,
+    deleted: false,
+    status: "active"  
+  })
+  const listen = (song as any).listen + 1
+  await Song.updateOne({ _id: idSong }, { $inc: { listen: listen } });
+  const songNew = await Song.findOne({
+    _id: idSong
+  })// do lượt nghe có thể sẽ tăng rất nhanh nên ta sẽ truy vấn lại để lấy lại lượt nghe cho đúng 
+  res.json({
+    code: 200,
+    message: "Cập nhật lượt nghe thành công",
+    listen: songNew?.listen
   })
 
 }

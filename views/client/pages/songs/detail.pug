@@ -21,6 +21,10 @@ block main
               i(class="fa-solid fa-music")
               | #{topic.title}
 
+            div(class="inner-action inner-listen" )
+              i(class="fa-solid fa-headphones")
+              span #{song.listen} lượt nghe
+              
             button(button-like = song._id class="inner-action inner-like")
               i(class="fa-regular fa-thumbs-up")
               span #{song.like} thích

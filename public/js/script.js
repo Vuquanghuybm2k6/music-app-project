@@ -13,13 +13,26 @@ if(aplayer){
     container: document.getElementById('aplayer'),
     audio: [{
         name: dataSong.title,
-        artist: dataSinger,
+        artist: dataSinger.fullName,
         url: dataSong.audio,
         cover: dataSong.avatar
     }],
     autoplay: true,
     volume: 1
 });
+ap.on("ended", function () {
+  console.log("ket thuc")
+  const link = `/songs/listen/${dataSong._id}`
+  const option = {
+    method: "PATCH"
+  }
+  fetch(link, option)
+    .then(res => res.json())
+    .then(data=>{
+      const elementListenSpan = document.querySelector(".singer-detail .inner-listen span")
+      elementListenSpan.innerHTML  = `${data.listen} lượt nghe`
+    })
+})
 }
 // End APlayer
 
